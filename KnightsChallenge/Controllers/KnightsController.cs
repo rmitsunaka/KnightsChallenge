@@ -33,7 +33,7 @@ namespace KnightsChallenge.Controllers
             }
             else
             {
-                // Retorna apenas os knights que são heróis
+              
                 var heroes = await _knightService.GetAsync();
                 return heroes.Where(k => k.IsHero).ToList();
             }
@@ -42,15 +42,15 @@ namespace KnightsChallenge.Controllers
         [HttpPost]
         public async Task<ActionResult<Knight>> Create(Knight knight)
         {
-            // Antes de persistir o Knight, defina seus atributos, armas, etc.
-            knight.Attributes = new Attributes(); // Certifique-se de inicializar os atributos adequadamente
-            knight.Weapons = new List<Weapon>(); // Certifique-se de inicializar a lista de armas
+           
+            knight.Attributes = new Attributes(); 
+            knight.Weapons = new List<Weapon>(); 
 
-            // Agora, calcule o ataque e a experiência
-            knight.Attributes.Strength = 10; // Defina os atributos necessários
-            knight.KeyAttribute = "strength"; // Defina o atributo chave
+        
+            knight.Attributes.Strength = 10; 
+            knight.KeyAttribute = "strength"; 
 
-            // Gerar um novo ObjectId manualmente
+          
             knight.Id = ObjectId.GenerateNewId().ToString();
 
             await _knightService.CreateAsync(knight);
@@ -81,11 +81,10 @@ namespace KnightsChallenge.Controllers
                 return NotFound();
             }
 
-            knight.IsHero = true; // Define o Knight como um herói antes de removê-lo
+            knight.IsHero = true; 
             await _knightService.RemoveAsync(id);
 
-            // Implemente a lógica para mover o Knight para o Hall of Heroes
-
+          
             return NoContent();
         }
 
@@ -99,14 +98,12 @@ namespace KnightsChallenge.Controllers
                 return NotFound();
             }
 
-            // Antes de atualizar o Knight, defina seus atributos, armas, etc.
+        
             knight.Name = updatedKnight.Name;
             knight.Nickname = updatedKnight.Nickname;
-            // Faça o mesmo para outros atributos, armas, etc.
-
-            // Agora, calcule o ataque e a experiência
-            knight.Attributes.Strength = 15; // Defina os atributos necessários
-            knight.KeyAttribute = "strength"; // Defina o atributo chave
+         
+            knight.Attributes.Strength = 15; 
+            knight.KeyAttribute = "strength"; 
 
             await _knightService.UpdateAsync(id, knight);
 
