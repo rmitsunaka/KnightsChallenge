@@ -1,0 +1,6 @@
+@KnightsChallenge_HostAddress = http://localhost:5250
+
+GET {{KnightsChallenge_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
